@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f4ec;
+  --foreground: #172033;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: rgba(255, 255, 255, 0.9);
+  --line: rgba(23, 32, 51, 0.1);
+  --brand: #ef6b43;
+  --brand-deep: #db4f26;
+  --accent: #0f8b8d;
+  --accent-soft: #bfe7e1;
+  --sun: #ffd36b;
+  --ink-soft: #50607c;
+  --shadow: 0 18px 50px rgba(23, 32, 51, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 211, 107, 0.42), transparent 28%),
+    radial-gradient(circle at top right, rgba(15, 139, 141, 0.14), transparent 24%),
+    linear-gradient(180deg, #fffaf0 0%, var(--background) 52%, #fff 100%);
+  color: var(--foreground);
+  font-family:
+    "Trebuchet MS", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+::selection {
+  background: rgba(239, 107, 67, 0.22);
+}
+
+.section-shell {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em];
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.section-title {
+  @apply max-w-3xl text-3xl font-black leading-tight sm:text-4xl lg:text-5xl;
+}
+
+.section-copy {
+  @apply max-w-2xl text-base leading-7 text-[color:var(--ink-soft)] sm:text-lg;
+}
+
+.glass-card {
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(23, 32, 51, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 51, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
