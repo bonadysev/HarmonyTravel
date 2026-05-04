@@ -11,7 +11,7 @@ export function HeroSection() {
 
           <div className="relative z-10 flex flex-col justify-between gap-8">
             <div className="space-y-6">
-              <span className="eyebrow">{brand.displayName} | Детские туры 7-17 лет</span>
+              <span className="eyebrow">{brand.displayName} | Детские туры 7-17 лет </span>
               <div className="space-y-4">
                 <h1 className="max-w-3xl text-4xl font-black leading-[1.02] sm:text-5xl lg:text-7xl">
                   Детские туры от Harmony Travel с акцентом на безопасность, развитие и яркие впечатления

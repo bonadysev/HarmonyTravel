@@ -30,7 +30,7 @@ export function SiteFooter() {
           <a href={`mailto:${brand.email}`}>{brand.email}</a>
           <a href={brand.telegramUrl}>{brand.telegramChannel}</a>
           <p>{brand.legalAddress}</p>
-          <p>Директор: {brand.director}</p>
+          <p>УНП: {brand.unp}</p>
           <a href="#top">Политика конфиденциальности</a>
         </div>
       </div>
