@@ -29,8 +29,12 @@ export function SiteFooter() {
           <a href={`tel:${brand.phone}`}>{brand.phone}</a>
           <a href={`mailto:${brand.email}`}>{brand.email}</a>
           <a href={brand.telegramUrl}>{brand.telegramChannel}</a>
+          <a href={brand.instagramUrl} target="_blank" rel="noreferrer">
+            Instagram: {brand.instagramHandle}
+          </a>
           <p>{brand.legalAddress}</p>
           <p>УНП: {brand.unp}</p>
+          <p>График работы: {brand.schedule}</p>
           <a href="#top">Политика конфиденциальности</a>
         </div>
       </div>

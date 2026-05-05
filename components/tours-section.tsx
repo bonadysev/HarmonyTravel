@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { tourCategories, tours } from "@/data/site";
+import { brand, tourCategories, tours } from "@/data/site";
 
 export function ToursSection() {
   const [category, setCategory] = useState("Все");
@@ -104,7 +104,17 @@ export function ToursSection() {
                     </div>
                   ) : null}
                   {"note" in tour && tour.note ? (
-                    <p className="mt-4 text-sm leading-6 text-[color:var(--ink-soft)]">{tour.note}</p>
+                    <div className="mt-4 space-y-2 text-sm leading-6 text-[color:var(--ink-soft)]">
+                      <p>{tour.note}</p>
+                      <a
+                        href={brand.instagramUrl}
+                        className="inline-flex font-semibold text-[color:var(--accent)] transition hover:text-[color:var(--brand)]"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Instagram: {brand.instagramHandle}
+                      </a>
+                    </div>
                   ) : null}
                 </div>
                 <a
