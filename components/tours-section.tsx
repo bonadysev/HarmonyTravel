@@ -62,18 +62,18 @@ export function ToursSection() {
                     <h3 className="mt-4 max-w-sm text-3xl font-black leading-tight">{tour.title}</h3>
                     <p className="mt-4 max-w-md text-sm leading-7 text-white/88">{tour.description}</p>
                   </div>
-                  <div className="mt-8 grid grid-cols-3 gap-3">
+                  <div className="mt-8 grid gap-x-4 gap-y-5 [grid-template-columns:repeat(auto-fit,minmax(140px,1fr))]">
                     <div>
                       <p className="text-xs uppercase tracking-[0.14em] text-white/70">Возраст</p>
-                      <p className="mt-1 text-lg font-black">{tour.age}</p>
+                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.age}</p>
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[0.14em] text-white/70">Длительность</p>
-                      <p className="mt-1 text-lg font-black">{tour.duration}</p>
+                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.duration}</p>
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[0.14em] text-white/70">Стоимость</p>
-                      <p className="mt-1 text-lg font-black">{tour.price}</p>
+                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.price}</p>
                     </div>
                   </div>
                 </div>
