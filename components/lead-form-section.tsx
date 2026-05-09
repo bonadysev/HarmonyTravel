@@ -1,12 +1,22 @@
 "use client";
 
 import { ValidationError, useForm } from "@formspree/react";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { brand } from "@/data/site";
+
+const initialFormValues = {
+  parentName: "",
+  childAge: "",
+  phone: "",
+  email: "",
+  message: "",
+};
 
 export function LeadFormSection() {
   const [state, handleSubmit] = useForm("xrejeapr");
+  const formRef = useRef<HTMLFormElement>(null);
   const [selectedTour, setSelectedTour] = useState("");
+  const [formValues, setFormValues] = useState(initialFormValues);
 
   useEffect(() => {
     function syncSelectedTour() {
@@ -21,8 +31,39 @@ export function LeadFormSection() {
     return () => {
       window.removeEventListener("popstate", syncSelectedTour);
       window.removeEventListener("hashchange", syncSelectedTour);
-    };
+      };
   }, []);
+
+  function clearTourFromUrl() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("tour");
+    const nextUrl = `${url.pathname}${url.search ? `?${url.searchParams.toString()}` : ""}#lead-form`;
+    window.history.replaceState({}, "", nextUrl);
+  }
+
+  function handleChange(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const target = event.currentTarget;
+    const { name, value } = target;
+    setFormValues((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  }
+
+  function handleClearForm() {
+    setFormValues(initialFormValues);
+    setSelectedTour("");
+    clearTourFromUrl();
+    formRef.current?.reset();
+  }
+
+  const isFormEmpty =
+    !selectedTour &&
+    !formValues.parentName &&
+    !formValues.childAge &&
+    !formValues.phone &&
+    !formValues.email &&
+    !formValues.message;
 
   return (
     <section id="lead-form" className="py-16 sm:py-20">
@@ -54,6 +95,7 @@ export function LeadFormSection() {
           </div>
 
           <form
+            ref={formRef}
             onSubmit={handleSubmit}
             className="rounded-[28px] bg-white p-5 text-[color:var(--foreground)] shadow-2xl sm:p-6"
           >
@@ -75,6 +117,8 @@ export function LeadFormSection() {
                   id="parentName"
                   name="parentName"
                   required
+                  value={formValues.parentName}
+                  onChange={handleChange}
                   className="min-h-12 rounded-2xl border bg-white px-4 outline-none transition focus:border-[color:var(--accent)]"
                   placeholder="Анна"
                 />
@@ -92,6 +136,8 @@ export function LeadFormSection() {
                   id="childAge"
                   name="childAge"
                   required
+                  value={formValues.childAge}
+                  onChange={handleChange}
                   className="min-h-12 rounded-2xl border bg-white px-4 outline-none transition focus:border-[color:var(--accent)]"
                   placeholder="12"
                 />
@@ -111,6 +157,8 @@ export function LeadFormSection() {
                   id="phone"
                   name="phone"
                   required
+                  value={formValues.phone}
+                  onChange={handleChange}
                   className="min-h-12 rounded-2xl border bg-white px-4 outline-none transition focus:border-[color:var(--accent)]"
                   placeholder={brand.phone}
                 />
@@ -129,6 +177,8 @@ export function LeadFormSection() {
                   name="email"
                   type="email"
                   required
+                  value={formValues.email}
+                  onChange={handleChange}
                   className="min-h-12 rounded-2xl border bg-white px-4 outline-none transition focus:border-[color:var(--accent)]"
                   placeholder={brand.email}
                 />
@@ -146,6 +196,8 @@ export function LeadFormSection() {
               <textarea
                 id="message"
                 name="message"
+                value={formValues.message}
+                onChange={handleChange}
                 className="min-h-32 rounded-2xl border bg-white px-4 py-3 outline-none transition focus:border-[color:var(--accent)]"
                 placeholder="Любит море, английский язык и активные программы"
                 required
@@ -164,6 +216,15 @@ export function LeadFormSection() {
               className="mt-5 inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full bg-[color:var(--brand)] px-5 text-base font-black text-white transition hover:bg-[color:var(--brand-deep)] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {state.submitting ? "Отправляем..." : "Получить подборку туров"}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleClearForm}
+              disabled={isFormEmpty || state.submitting}
+              className="mt-3 inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full border border-[color:var(--foreground)]/12 bg-white px-5 text-base font-black text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Очистить форму
             </button>
 
             <p className="mt-4 text-sm leading-6 text-[color:var(--ink-soft)]">
