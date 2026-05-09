@@ -6,6 +6,11 @@ import { brand, tourCategories, tours } from "@/data/site";
 export function ToursSection() {
   const [category, setCategory] = useState("Все");
 
+  function buildLeadHref(title: string, date?: string) {
+    const label = date ? `${title} — ${date}` : title;
+    return `/?tour=${encodeURIComponent(label)}#lead-form`;
+  }
+
   const filteredTours = useMemo(() => {
     if (category === "Все") {
       return tours;
@@ -118,7 +123,7 @@ export function ToursSection() {
                   ) : null}
                 </div>
                 <a
-                  href="#lead-form"
+                  href={buildLeadHref(tour.title, "date" in tour ? tour.date : undefined)}
                   className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[color:var(--brand)] px-5 text-sm font-black text-white transition hover:bg-[color:var(--brand-deep)]"
                 >
                   Оставить заявку

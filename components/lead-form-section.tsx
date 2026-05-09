@@ -1,10 +1,28 @@
 "use client";
 
 import { ValidationError, useForm } from "@formspree/react";
+import { useEffect, useState } from "react";
 import { brand } from "@/data/site";
 
 export function LeadFormSection() {
-  const [state, handleSubmit] = useForm("xbdwdkne");
+  const [state, handleSubmit] = useForm("xrejeapr");
+  const [selectedTour, setSelectedTour] = useState("");
+
+  useEffect(() => {
+    function syncSelectedTour() {
+      const params = new URLSearchParams(window.location.search);
+      setSelectedTour(params.get("tour") ?? "");
+    }
+
+    syncSelectedTour();
+    window.addEventListener("popstate", syncSelectedTour);
+    window.addEventListener("hashchange", syncSelectedTour);
+
+    return () => {
+      window.removeEventListener("popstate", syncSelectedTour);
+      window.removeEventListener("hashchange", syncSelectedTour);
+    };
+  }, []);
 
   return (
     <section id="lead-form" className="py-16 sm:py-20">
@@ -41,6 +59,14 @@ export function LeadFormSection() {
           >
             <input type="hidden" name="_subject" value="Новая заявка на подбор тура с Harmony Travel" />
             <input type="hidden" name="_language" value="ru" />
+            <input type="hidden" name="selectedTour" value={selectedTour} />
+
+            {selectedTour ? (
+              <div className="mb-4 rounded-[24px] bg-[color:var(--accent-soft)]/45 p-4">
+                <p className="text-sm font-bold text-[color:var(--ink-soft)]">Выбранный выезд</p>
+                <p className="mt-1 text-base font-black">{selectedTour}</p>
+              </div>
+            ) : null}
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="flex flex-col gap-2">
