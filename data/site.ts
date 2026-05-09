@@ -16,11 +16,42 @@ export const brand = {
 };
 
 export const navigationItems = [
+  { label: "Ближайшие выезды", href: "#departures" },
   { label: "Туры", href: "#tours" },
   { label: "Преимущества", href: "#benefits" },
   { label: "Безопасность", href: "#safety" },
   { label: "Отзывы", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
+];
+
+export const upcomingDepartures = [
+  {
+    date: "16 мая",
+    title: "Детский тур в Могилев",
+    location: "г. Могилев",
+    price: "77 руб.",
+    format: "1 день",
+    status: "Идет набор",
+    statusTone: "teal",
+  },
+  {
+    date: "23 мая",
+    title: 'Зоопарк + Дельфинарий',
+    location: "г. Минск",
+    price: "118 руб.",
+    format: "1 день",
+    status: "Есть места",
+    statusTone: "amber",
+  },
+  {
+    date: "30 мая",
+    title: 'Зоопарк + Дельфинарий',
+    location: "г. Минск",
+    price: "124 руб.",
+    format: "1 день",
+    status: "Идет набор",
+    statusTone: "teal",
+  },
 ];
 
 export const heroHighlights = [

@@ -22,7 +22,7 @@ export function SiteHeader() {
           </div>
           <div className="min-w-0">
             <p className="truncate text-base font-black">{brand.shortName}</p>
-            <p className="truncate text-sm text-[color:var(--ink-soft)]">{brand.displayName} | Детские туры | {brand.phone}</p>
+            <p className="truncate text-sm text-[color:var(--ink-soft)]">{brand.displayName} | Детские туры </p>
           </div>
         </a>
 

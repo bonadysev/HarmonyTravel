@@ -8,12 +8,14 @@ import { SafetySection } from "@/components/safety-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ToursSection } from "@/components/tours-section";
+import { UpcomingDeparturesSection } from "@/components/upcoming-departures-section";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <SiteHeader />
       <HeroSection />
+      <UpcomingDeparturesSection />
       <BenefitsSection />
       <ToursSection />
       <SafetySection />
