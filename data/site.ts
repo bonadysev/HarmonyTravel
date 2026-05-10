@@ -37,7 +37,7 @@ export const upcomingDepartures = [
   {
     date: "31 мая",
     title: 'Сказочная страна "МалиВур"',
-    location: "МалиВур",
+    location: "д.Добренево Логойского района Минской области",
     price: "105 руб. / 110 руб.",
     format: "1 день",
     status: "Идет набор",
@@ -123,7 +123,7 @@ export const benefits = [
   },
 ];
 
-export const tourCategories = ["Все", "Языковые", "Активные", "Морские", "Экскурсионные"];
+export const tourCategories = ["Все", "Активные", "Морские", "Экскурсионные"];
 
 export const tours = [
   {
@@ -179,7 +179,7 @@ export const tours = [
   {
     category: "Экскурсионные",
     title: 'Детский тур в сказочную страну "МалиВур"',
-    location: "Сказочная страна МалиВур",
+    location: "д.Добренево Логойского района Минской области",
     date: "16 мая, 31 мая",
     age: "Школьные группы",
     duration: "1 день",
