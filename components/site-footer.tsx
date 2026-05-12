@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { brand } from "@/data/site";
+import { brand } from "@/data";
 
 export function SiteFooter() {
   return (

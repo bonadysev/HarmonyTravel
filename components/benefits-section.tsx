@@ -1,4 +1,4 @@
-import { benefits } from "@/data/site";
+import { benefits } from "@/data";
 
 export function BenefitsSection() {
   return (

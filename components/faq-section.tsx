@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { faqs } from "@/data/site";
+import { faqs } from "@/data";
 
 export function FaqSection() {
   const [openItem, setOpenItem] = useState(0);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { brand, tourCategories, tours } from "@/data/site";
+import { brand, tourCategories, tours } from "@/data";
 
 export function ToursSection() {
   const [category, setCategory] = useState("Все");

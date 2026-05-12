@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { brand, heroHighlights, heroStats } from "@/data/site";
+import { brand, heroHighlights, heroStats } from "@/data";
 
 export function HeroSection() {
   return (

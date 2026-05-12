@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { brand, navigationItems } from "@/data/site";
+import { brand, navigationItems } from "@/data";
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);

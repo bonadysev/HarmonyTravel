@@ -1,4 +1,4 @@
-import { safetyItems } from "@/data/site";
+import { safetyItems } from "@/data";
 
 export function SafetySection() {
   return (

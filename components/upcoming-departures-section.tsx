@@ -1,6 +1,4 @@
-import { upcomingDepartures } from "@/data/site";
-
-type DepartureTone = "teal" | "amber";
+import { upcomingDepartures, type DepartureTone } from "@/data";
 
 const toneClasses = {
   teal: "bg-emerald-100 text-emerald-800",

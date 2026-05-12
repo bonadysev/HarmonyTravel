@@ -1,4 +1,4 @@
-import { steps } from "@/data/site";
+import { steps } from "@/data";
 
 export function HowItWorksSection() {
   return (

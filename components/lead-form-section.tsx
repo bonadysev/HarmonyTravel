@@ -2,7 +2,7 @@
 
 import { ValidationError, useForm } from "@formspree/react";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { brand } from "@/data/site";
+import { brand } from "@/data";
 
 const initialFormValues = {
   parentName: "",
