@@ -1,5 +1,7 @@
 import type { CompanyInfo } from "@/data/types";
 
+const repoBasePath = process.env.NODE_ENV === "production" ? "/HarmonyTravel" : "";
+
 export const brand: CompanyInfo = {
   shortName: "Harmony Travel",
   displayName: "Гармония Трэвел",
@@ -12,7 +14,7 @@ export const brand: CompanyInfo = {
   legalAddress: "Республика Беларусь, г. Жлобин",
   email: "harmonytravel.by@gmail.com",
   director: "Овсяникова И.В.",
-  logoPath: "/harmony-travel-logo.jpg",
+  logoPath: `${repoBasePath}/harmony-travel-logo.jpg`,
   unp: "491471681",
   schedule: "Пн-Пт: 10:00-19:00, Сб-Вс: 10:00-18:00",
 };

@@ -8,7 +8,7 @@ export function ToursSection() {
 
   function buildLeadHref(title: string, date?: string) {
     const label = date ? `${title} — ${date}` : title;
-    return `/?tour=${encodeURIComponent(label)}#lead-form`;
+    return `?tour=${encodeURIComponent(label)}#lead-form`;
   }
 
   const filteredTours = useMemo(() => {

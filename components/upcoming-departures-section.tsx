@@ -7,7 +7,7 @@ const toneClasses = {
 
 export function UpcomingDeparturesSection() {
   function buildLeadHref(title: string, date: string) {
-    return `/?tour=${encodeURIComponent(`${title} — ${date}`)}#lead-form`;
+    return `?tour=${encodeURIComponent(`${title} — ${date}`)}#lead-form`;
   }
 
   return (
