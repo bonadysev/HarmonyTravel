@@ -52,6 +52,10 @@ export type Tour = {
   included?: string[];
   note?: string;
   colorClass: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   active: boolean;
 };
 

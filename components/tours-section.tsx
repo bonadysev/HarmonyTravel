@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { brand, tourCategories, tours } from "@/data";
 
@@ -53,32 +54,47 @@ export function ToursSection() {
         <div className="mt-10 grid gap-4 xl:grid-cols-2">
           {filteredTours.map((tour) => (
             <article key={tour.title} className="glass-card grid overflow-hidden rounded-[30px] border lg:grid-cols-[1.1fr_0.9fr]">
-              <div className={`min-h-[260px] ${tour.colorClass} p-6 text-white`}>
-                <div className="flex h-full flex-col justify-between">
-                  <div>
-                    <div className="inline-flex rounded-full border border-white/30 bg-white/12 px-3 py-1 text-xs font-black uppercase tracking-[0.14em]">
-                      {tour.category}
-                    </div>
-                    {"date" in tour ? (
-                      <p className="mt-4 text-sm font-black uppercase tracking-[0.14em] text-white/72">
-                        {tour.date}
-                      </p>
-                    ) : null}
-                    <h3 className="mt-4 max-w-sm text-3xl font-black leading-tight">{tour.title}</h3>
-                    <p className="mt-4 max-w-md text-sm leading-7 text-white/88">{tour.description}</p>
+              <div className={`${tour.colorClass} text-white`}>
+                {tour.image ? (
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={tour.image.src}
+                      alt={tour.image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1279px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,26,0.06),rgba(12,15,26,0.58))]" />
                   </div>
-                  <div className="mt-8 grid gap-x-4 gap-y-5 [grid-template-columns:repeat(auto-fit,minmax(140px,1fr))]">
+                ) : null}
+
+                <div className={`p-6 ${tour.image ? "bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))]" : "min-h-[260px]"}`}>
+                  <div className="flex h-full flex-col justify-between">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.14em] text-white/70">Возраст</p>
-                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.age}</p>
+                      <div className="inline-flex rounded-full border border-white/30 bg-white/12 px-3 py-1 text-xs font-black uppercase tracking-[0.14em]">
+                        {tour.category}
+                      </div>
+                      {"date" in tour ? (
+                        <p className="mt-4 text-sm font-black uppercase tracking-[0.14em] text-white/72">
+                          {tour.date}
+                        </p>
+                      ) : null}
+                      <h3 className="mt-4 max-w-sm text-3xl font-black leading-tight">{tour.title}</h3>
+                      <p className="mt-4 max-w-md text-sm leading-7 text-white/88">{tour.description}</p>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.14em] text-white/70">Длительность</p>
-                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.duration}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.14em] text-white/70">Стоимость</p>
-                      <p className="mt-1 text-lg font-black leading-tight break-words">{tour.price}</p>
+                    <div className="mt-8 grid gap-x-4 gap-y-5 [grid-template-columns:repeat(auto-fit,minmax(140px,1fr))]">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.14em] text-white/70">Возраст</p>
+                        <p className="mt-1 text-lg font-black leading-tight break-words">{tour.age}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.14em] text-white/70">Длительность</p>
+                        <p className="mt-1 text-lg font-black leading-tight break-words">{tour.duration}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.14em] text-white/70">Стоимость</p>
+                        <p className="mt-1 text-lg font-black leading-tight break-words">{tour.price}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
