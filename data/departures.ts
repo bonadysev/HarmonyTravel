@@ -46,6 +46,17 @@ export const upcomingDepartures: UpcomingDeparture[] = [
     linkedTourId: "minsk-zoo-dolphinarium",
   },
   {
+    id: "dukorsky-maentak-2026-05-30",
+    date: "30 мая",
+    title: 'Дукорский маёнтак',
+    location: 'музейный комплекс "Дукорский маёнтак"',
+    price: "108 руб.",
+    format: "1 день",
+    status: "Идет набор",
+    statusTone: "teal",
+    linkedTourId: "dukorsky-maentak",
+  },
+  {
     id: "sula-2026-05-31",
     date: "31 мая",
     title: 'Парк-истории "Сула"',
