@@ -1,5 +1,7 @@
 import type { Tour, TourCategory } from "@/data/types";
 
+const repoBasePath = process.env.NODE_ENV === "production" ? "/HarmonyTravel" : "";
+
 export const tourCategories: Array<"Все" | TourCategory> = ["Все", "Активные", "Морские", "Экскурсионные"];
 //можно отключать тур через active: false
 export const tours: Tour[] = [
@@ -29,7 +31,7 @@ export const tours: Tour[] = [
     note: "Для удобства оплаты сумму можно разбить на 2 платежа. Питание в Мак.by оплачивается дополнительно.",
     colorClass: "bg-[linear-gradient(160deg,#261a53,#3f2c83_55%,#0f8b8d)]",
     image: {
-      src: "/tours/mogilev.jpeg",
+      src: `${repoBasePath}/tours/mogilev.jpeg`,
       alt: "Детский тур в Могилев",
     },
     active: true,
@@ -60,7 +62,7 @@ export const tours: Tour[] = [
     note: "Стоимость можно разбить на 2 платежа. Стоимость: 118 руб. (М.А), 124 руб. (Б.А).",
     colorClass: "bg-[linear-gradient(160deg,#0f8b8d,#1b5c7a_55%,#261a53)]",
     image: {
-      src: "/tours/zoo-dolphinarium.jpeg",
+      src: `${repoBasePath}/tours/zoo-dolphinarium.jpeg`,
       alt: 'Детский тур "Зоопарк + Дельфинарий"',
     },
     active: true,
@@ -91,7 +93,7 @@ export const tours: Tour[] = [
     note: "Стоимость тура: 105 руб. (М.А) / 110 руб. (Б/А). Питание оплачивается отдельно при предварительном заказе.",
     colorClass: "bg-[linear-gradient(160deg,#51317a,#8c52c9_55%,#ef6b43)]",
     image: {
-      src: "/tours/malivur.jpeg",
+      src: `${repoBasePath}/tours/malivur.jpeg`,
       alt: 'Детский тур в сказочную страну "МалиВур"',
     },
     active: true,
@@ -123,7 +125,7 @@ export const tours: Tour[] = [
     note: "По желанию группы возможен заказ комплексного обеда или легкого сладкого перекуса за дополнительную плату. Другая дата возможна по индивидуальному заказу.",
     colorClass: "bg-[linear-gradient(160deg,#3d2a16,#7d4f27_55%,#c17b2d)]",
     image: {
-      src: "/tours/sula.jpeg",
+      src: `${repoBasePath}/tours/sula.jpeg`,
       alt: 'Парк-истории "Сула"',
     },
     active: true,
