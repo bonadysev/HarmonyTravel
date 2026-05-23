@@ -88,7 +88,11 @@ export type Review = {
   id: string;
   author: string;
   city: string;
+  parentContext: string;
+  childAge: string;
+  tour: string;
   quote: string;
+  accentTone: "teal" | "violet" | "amber";
 };
 
 export type FaqItem = {
