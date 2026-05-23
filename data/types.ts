@@ -11,6 +11,7 @@ export type CompanyInfo = {
   email: string;
   director: string;
   logoPath: string;
+  googleMapsUrl: string;
   unp: string;
   schedule: string;
 };

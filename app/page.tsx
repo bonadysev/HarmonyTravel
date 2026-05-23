@@ -3,6 +3,7 @@ import { FaqSection } from "@/components/faq-section";
 import { HeroSection } from "@/components/hero-section";
 import { HowItWorksSection } from "@/components/how-it-works-section";
 import { LeadFormSection } from "@/components/lead-form-section";
+import { LocationSection } from "@/components/location-section";
 import { MobileStickyContactBar } from "@/components/mobile-sticky-contact-bar";
 import { ReviewsSection } from "@/components/reviews-section";
 import { SafetySection } from "@/components/safety-section";
@@ -23,6 +24,7 @@ export default function Home() {
       <HowItWorksSection />
       <ReviewsSection />
       <FaqSection />
+      <LocationSection />
       <LeadFormSection />
       <SiteFooter />
       <MobileStickyContactBar />
