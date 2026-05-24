@@ -1,6 +1,7 @@
 "use client";
 
 import { ValidationError, useForm } from "@formspree/react";
+import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { brand } from "@/data";
 
@@ -10,6 +11,7 @@ const initialFormValues = {
   phone: "",
   email: "",
   message: "",
+  consentAccepted: false,
 };
 
 export function LeadFormSection() {
@@ -43,10 +45,12 @@ export function LeadFormSection() {
 
   function handleChange(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const target = event.currentTarget;
-    const { name, value } = target;
+    const nextValue =
+      target instanceof HTMLInputElement && target.type === "checkbox" ? target.checked : target.value;
+
     setFormValues((current) => ({
       ...current,
-      [name]: value,
+      [target.name]: nextValue,
     }));
   }
 
@@ -63,7 +67,8 @@ export function LeadFormSection() {
     !formValues.childAge &&
     !formValues.phone &&
     !formValues.email &&
-    !formValues.message;
+    !formValues.message &&
+    !formValues.consentAccepted;
 
   return (
     <section id="lead-form" className="py-16 sm:py-20">
@@ -210,9 +215,33 @@ export function LeadFormSection() {
               />
             </label>
 
+            <label className="mt-5 flex items-start gap-3 rounded-[22px] border border-[color:var(--foreground)]/10 bg-[color:var(--accent-soft)]/20 p-4">
+              <input
+                id="consentAccepted"
+                name="consentAccepted"
+                type="checkbox"
+                required
+                checked={formValues.consentAccepted}
+                onChange={handleChange}
+                className="mt-1 h-4 w-4 rounded border-[color:var(--foreground)]/20 text-[color:var(--brand)] focus:ring-[color:var(--accent)]"
+              />
+              <span className="text-sm leading-6 text-[color:var(--ink-soft)]">
+                Я соглашаюсь на обработку персональных данных и подтверждаю, что ознакомился с{" "}
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-[color:var(--accent)] underline decoration-[color:var(--accent)]/35 underline-offset-4 transition hover:text-[color:var(--brand)]"
+                >
+                  политикой обработки персональных данных
+                </Link>
+                .
+              </span>
+            </label>
+
             <button
               type="submit"
-              disabled={state.submitting}
+              disabled={state.submitting || !formValues.consentAccepted}
               className="mt-5 inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full bg-[color:var(--brand)] px-5 text-base font-black text-white transition hover:bg-[color:var(--brand-deep)] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {state.submitting ? "Отправляем..." : "Получить подборку туров"}
@@ -226,10 +255,6 @@ export function LeadFormSection() {
             >
               Очистить форму
             </button>
-
-            <p className="mt-4 text-sm leading-6 text-[color:var(--ink-soft)]">
-              Отправляя форму, пользователь соглашается на обработку персональных данных в {brand.legalName}.
-            </p>
 
             {state.succeeded ? (
               <p

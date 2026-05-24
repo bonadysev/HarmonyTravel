@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { brand } from "@/data";
 import { BrandSignature } from "@/components/brand-signature";
 
@@ -18,7 +19,9 @@ export function SiteFooter() {
           <p>{brand.legalAddress}</p>
           <p>График работы: {brand.schedule}</p>
           <p>УНП: {brand.unp}</p>
-          <a href="#top">Политика конфиденциальности</a>
+          <Link href="/privacy-policy" target="_blank" rel="noreferrer">
+            Политика обработки персональных данных
+          </Link>
         </div>
       </div>
     </footer>
