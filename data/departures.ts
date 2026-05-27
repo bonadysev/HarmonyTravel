@@ -1,17 +1,7 @@
 import type { UpcomingDeparture } from "@/data/types";
 
 export const upcomingDepartures: UpcomingDeparture[] = [
-  {
-    id: "mogilev-2026-05-16",
-    date: "16 мая",
-    title: "Детский тур в Могилев",
-    location: "г. Могилев",
-    price: "77 руб.",
-    format: "1 день",
-    status: "Идет набор",
-    statusTone: "teal",
-    linkedTourId: "mogilev-glory-masters",
-  },
+
   {
     id: "malivur-2026-05-31",
     date: "31 мая",
@@ -20,19 +10,8 @@ export const upcomingDepartures: UpcomingDeparture[] = [
     price: "105 руб. / 110 руб.",
     format: "1 день",
     status: "Идет набор",
-    statusTone: "teal",
-    linkedTourId: "malivur-fairy-land",
-  },
-  {
-    id: "zoo-dolphinarium-2026-05-23",
-    date: "23 мая",
-    title: "Зоопарк + Дельфинарий",
-    location: "г. Минск",
-    price: "118 руб.",
-    format: "1 день",
-    status: "Есть места",
     statusTone: "amber",
-    linkedTourId: "minsk-zoo-dolphinarium",
+    linkedTourId: "malivur-fairy-land",
   },
   {
     id: "zoo-dolphinarium-2026-05-30",
@@ -44,17 +23,6 @@ export const upcomingDepartures: UpcomingDeparture[] = [
     status: "Идет набор",
     statusTone: "teal",
     linkedTourId: "minsk-zoo-dolphinarium",
-  },
-  {
-    id: "dukorsky-maentak-2026-05-30",
-    date: "30 мая",
-    title: 'Дукорский маёнтак',
-    location: 'музейный комплекс "Дукорский маёнтак"',
-    price: "108 руб.",
-    format: "1 день",
-    status: "Идет набор",
-    statusTone: "teal",
-    linkedTourId: "dukorsky-maentak",
   },
   {
     id: "sula-2026-05-31",
