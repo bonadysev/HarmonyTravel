@@ -91,9 +91,14 @@ export function ToursSection() {
                         <p className="text-xs uppercase tracking-[0.14em] text-white/70">Длительность</p>
                         <p className="mt-1 text-lg font-black leading-tight break-words">{tour.duration}</p>
                       </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.14em] text-white/70">Стоимость</p>
-                        <p className="mt-1 text-lg font-black leading-tight break-words">{tour.price}</p>
+                      <div className="rounded-[22px] border border-white/16 bg-white/12 p-4 shadow-[0_12px_28px_rgba(12,15,26,0.12)]">
+                        <p className="text-[11px] font-black uppercase tracking-[0.14em] text-white/72">
+                          Стоимость
+                        </p>
+                        <p className="mt-2 text-2xl font-black leading-tight text-white break-words sm:text-[1.95rem]">
+                          {tour.price}
+                        </p>
+                        <p className="mt-2 text-xs leading-5 text-white/72">Цена на человека</p>
                       </div>
                     </div>
                   </div>
