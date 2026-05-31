@@ -96,6 +96,13 @@ export type Review = {
   accentTone: "teal" | "violet" | "amber";
 };
 
+export type TrustItem = {
+  id: string;
+  badge: string;
+  title: string;
+  description: string;
+};
+
 export type FaqItem = {
   id: string;
   question: string;

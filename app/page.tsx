@@ -1,5 +1,4 @@
 import { BenefitsSection } from "@/components/benefits-section";
-import { FaqSection } from "@/components/faq-section";
 import { HeroSection } from "@/components/hero-section";
 import { HowItWorksSection } from "@/components/how-it-works-section";
 import { LeadFormSection } from "@/components/lead-form-section";
@@ -10,6 +9,7 @@ import { SafetySection } from "@/components/safety-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ToursSection } from "@/components/tours-section";
+import { TrustFaqSection } from "@/components/trust-faq-section";
 import { UpcomingDeparturesSection } from "@/components/upcoming-departures-section";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <SafetySection />
       <HowItWorksSection />
       <ReviewsSection />
-      <FaqSection />
+      <TrustFaqSection />
       <LocationSection />
       <LeadFormSection />
       <SiteFooter />

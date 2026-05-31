@@ -4,5 +4,6 @@ export { heroHighlights, heroStats, benefits, safetyItems, steps } from "@/data/
 export { tourCategories, tours } from "@/data/tours";
 export { upcomingDepartures } from "@/data/departures";
 export { reviews } from "@/data/reviews";
+export { trustItems } from "@/data/trust";
 export { faqs } from "@/data/faqs";
 export * from "@/data/types";
