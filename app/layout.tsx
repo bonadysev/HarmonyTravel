@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CookieConsent } from "@/components/cookie-consent";
 import { YandexMetrika } from "@/components/yandex-metrika";
 import "./globals.css";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="ru">
       <body className="antialiased">
         {children}
+        <CookieConsent />
         <YandexMetrika />
       </body>
     </html>
