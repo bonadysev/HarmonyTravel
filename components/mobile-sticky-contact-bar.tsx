@@ -14,12 +14,12 @@ export function MobileStickyContactBar() {
           className="inline-flex min-h-14 flex-col items-center justify-center gap-1 rounded-[22px] border border-[color:var(--accent)]/12 bg-[color:var(--accent-soft)]/28 px-2 text-center text-[11px] font-bold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
           aria-label="Открыть Telegram-канал Harmony Travel"
         >
-          <span className="relative inline-flex h-8 w-8 overflow-hidden rounded-full bg-white shadow-sm">
+          <span className="relative inline-flex h-8 w-8 shrink-0 overflow-hidden rounded-full bg-white shadow-sm">
             <Image
               src={telegramLogoPath}
               alt=""
               fill
-              className="object-cover"
+              className="scale-[1.34] object-cover"
               sizes="32px"
             />
           </span>

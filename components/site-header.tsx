@@ -45,14 +45,14 @@ export function SiteHeader() {
             href={brand.telegramUrl}
             target="_blank"
             rel="noreferrer"
-            className="relative inline-flex h-12 w-12 overflow-hidden rounded-full border bg-white transition hover:border-[color:var(--accent)]"
+            className="relative inline-flex h-12 w-12 shrink-0 overflow-hidden rounded-full border bg-white transition hover:border-[color:var(--accent)]"
             aria-label="Открыть Telegram-канал Harmony Travel"
           >
             <Image
               src={telegramLogoPath}
               alt=""
               fill
-              className="object-cover"
+              className="scale-[1.34] object-cover"
               sizes="48px"
             />
           </a>
