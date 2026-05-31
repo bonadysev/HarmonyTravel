@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { YandexMetrika } from "@/components/yandex-metrika";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <YandexMetrika />
+      </body>
     </html>
   );
 }
