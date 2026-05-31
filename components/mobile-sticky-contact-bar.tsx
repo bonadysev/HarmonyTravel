@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { brand } from "@/data";
+
+const telegramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/telegram_logo.jpg" : "/telegram_logo.jpg";
 
 export function MobileStickyContactBar() {
   return (
@@ -11,10 +14,14 @@ export function MobileStickyContactBar() {
           className="inline-flex min-h-14 flex-col items-center justify-center gap-1 rounded-[22px] border border-[color:var(--accent)]/12 bg-[color:var(--accent-soft)]/28 px-2 text-center text-[11px] font-bold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
           aria-label="Открыть Telegram-канал Harmony Travel"
         >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[color:var(--accent)] shadow-sm">
-            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
-              <path d="M20.67 3.33a1 1 0 0 0-1.06-.17L3.94 9.41a1 1 0 0 0 .09 1.87l3.74 1.25 1.25 3.74a1 1 0 0 0 .74.66 1 1 0 0 0 .22.03 1 1 0 0 0 .91-.58l6.25-15.67a1 1 0 0 0-.47-1.38Zm-9.9 10.61-.53 1.33-.7-2.09 5.31-5.31-4.08 6.07Z" />
-            </svg>
+          <span className="relative inline-flex h-8 w-8 overflow-hidden rounded-full bg-white shadow-sm">
+            <Image
+              src={telegramLogoPath}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="32px"
+            />
           </span>
           Telegram
         </a>

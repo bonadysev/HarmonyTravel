@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { brand, navigationItems } from "@/data";
 
+const telegramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/telegram_logo.jpg" : "/telegram_logo.jpg";
+
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,9 +43,18 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={brand.telegramUrl}
-            className="rounded-full border px-4 py-2 text-sm font-bold transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+            target="_blank"
+            rel="noreferrer"
+            className="relative inline-flex h-12 w-12 overflow-hidden rounded-full border bg-white transition hover:border-[color:var(--accent)]"
+            aria-label="Открыть Telegram-канал Harmony Travel"
           >
-            Telegram
+            <Image
+              src={telegramLogoPath}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="48px"
+            />
           </a>
           <a
             href="#lead-form"
