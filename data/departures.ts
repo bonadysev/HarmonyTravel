@@ -4,7 +4,7 @@ export const upcomingDepartures: UpcomingDeparture[] = [
 
   {
     id: "malivur-2026-05-31",
-    date: "31 мая",
+    date: "ОБНОВЛЯЕТСЯ",
     title: 'Сказочная страна "МалиВур"',
     location: "д.Добренево Минской области",
     price: "105 руб. / 110 руб.",
@@ -15,7 +15,7 @@ export const upcomingDepartures: UpcomingDeparture[] = [
   },
   {
     id: "zoo-dolphinarium-2026-05-30",
-    date: "30 мая",
+    date: "ОБНОВЛЯЕТСЯ",
     title: "Зоопарк + Дельфинарий",
     location: "г. Минск",
     price: "124 руб.",
@@ -26,7 +26,7 @@ export const upcomingDepartures: UpcomingDeparture[] = [
   },
   {
     id: "sula-2026-05-31",
-    date: "31 мая",
+    date: "ОБНОВЛЯЕТСЯ",
     title: 'Парк-истории "Сула"',
     location: 'Минская обл., д. Сула',
     price: "125 руб.",
