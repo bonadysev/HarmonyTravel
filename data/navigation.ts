@@ -7,4 +7,5 @@ export const navigationItems: NavigationItem[] = [
   { label: "Безопасность", href: "#safety" },
   { label: "Отзывы", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
+  { label: "Контакты", href: "#location" },
 ];
