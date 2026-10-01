@@ -44,7 +44,7 @@ export function LocationSection() {
                 <div>
                   <p className="text-sm font-black text-[color:var(--foreground)]">Адрес</p>
                   <p className="mt-1 text-sm leading-6 text-[color:var(--ink-soft)]">
-                    Республика Беларусь, г. Жлобин, ул. Козлова 25
+                    {brand.legalAddress}
                   </p>
                 </div>
               </div>
@@ -150,8 +150,8 @@ export function LocationSection() {
               </div>
 
               <div className="mt-6">
-                <p className="text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)]">Жлобин</p>
-                <h3 className="mt-2 text-2xl font-black leading-tight">ул. Козлова 25</h3>
+                <p className="text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)]">Минск</p>
+                <h3 className="mt-2 text-2xl font-black leading-tight">ул. Машерова д. 17</h3>
                 <p className="mt-3 max-w-md text-sm leading-6 text-[color:var(--ink-soft)]">
                   Открыть карту и построить маршрут в приложении. Подойдет, если удобнее быстро
                   сориентироваться по адресу перед звонком или визитом.

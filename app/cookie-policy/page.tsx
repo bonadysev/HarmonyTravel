@@ -51,7 +51,7 @@ export default function CookiePolicyPage() {
             <section className="space-y-3">
               <h2 className="text-xl font-black text-[color:var(--foreground)]">1. Оператор</h2>
               <p>{brand.legalName}</p>
-              <p>Адрес: {brand.legalAddress}, ул. Козлова 25</p>
+              <p>Адрес: {brand.legalAddress}</p>
               <p>Email для обращений: {brand.email}</p>
               <p>Телефон: {brand.phone}</p>
             </section>

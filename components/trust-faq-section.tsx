@@ -40,7 +40,7 @@ export function TrustFaqSection() {
                 </p>
                 <p className="mt-2 text-lg font-black">{brand.legalName}</p>
                 <p className="mt-2 text-sm leading-6 text-[color:var(--ink-soft)]">
-                  Директор: {brand.director}. Юридический адрес: {brand.legalAddress}, ул. Козлова 25.
+                  Директор: {brand.director}. Юридический адрес: {brand.legalAddress}.
                 </p>
               </div>
             </div>
