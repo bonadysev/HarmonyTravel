@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "sync:sheets": "node scripts/sync-google-sheets.mjs",
     "preview": "pnpm dlx serve out",
     "lint": "next lint"
   },

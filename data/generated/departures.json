@@ -1,0 +1,35 @@
+[
+  {
+    "id": "malivur-2026-05-31",
+    "linkedTourId": "malivur-fairy-land",
+    "date": "ОБНОВЛЯЕТСЯ",
+    "title": "Сказочная страна \"МалиВур\"",
+    "location": "д.Добренево Минской области",
+    "price": "105 руб. / 110 руб.",
+    "format": "1 день",
+    "status": "Идет набор",
+    "statusTone": "amber"
+  },
+  {
+    "id": "zoo-dolphinarium-2026-05-30",
+    "linkedTourId": "minsk-zoo-dolphinarium",
+    "date": "ОБНОВЛЯЕТСЯ",
+    "title": "Зоопарк + Дельфинарий",
+    "location": "г. Минск",
+    "price": "124 руб.",
+    "format": "1 день",
+    "status": "Идет набор",
+    "statusTone": "teal"
+  },
+  {
+    "id": "sula-2026-05-31",
+    "linkedTourId": "sula-history-park",
+    "date": "ОБНОВЛЯЕТСЯ",
+    "title": "Парк-истории \"Сула\"",
+    "location": "Минская обл., д. Сула",
+    "price": "125 руб.",
+    "format": "1 день",
+    "status": "Идет набор",
+    "statusTone": "teal"
+  }
+]
