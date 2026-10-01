@@ -93,7 +93,7 @@ function assertUnique(rows, field, sheetName) {
 }
 
 async function readSheet(sheetName) {
-  const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+  const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&headers=1&sheet=${encodeURIComponent(sheetName)}`;
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Не удалось прочитать лист ${sheetName}: HTTP ${response.status}`);
   const rows = parseCsv(await response.text());
@@ -102,8 +102,9 @@ async function readSheet(sheetName) {
   const headers = rows[0].map((header) => header.replace(/^\uFEFF/, "").trim());
   const expectedHeaders = schemas[sheetName];
   const missingHeaders = expectedHeaders.filter((header) => !headers.includes(header));
-  const extraHeaders = headers.filter((header) => !expectedHeaders.includes(header));
-  if (missingHeaders.length || extraHeaders.length || new Set(headers).size !== headers.length) {
+  const nonEmptyHeaders = headers.filter(Boolean);
+  const extraHeaders = nonEmptyHeaders.filter((header) => !expectedHeaders.includes(header));
+  if (missingHeaders.length || extraHeaders.length || new Set(nonEmptyHeaders).size !== nonEmptyHeaders.length) {
     throw new Error(`Лист ${sheetName}: неверные заголовки. Не хватает: ${missingHeaders.join(", ") || "нет"}; лишние: ${extraHeaders.join(", ") || "нет"}`);
   }
 
@@ -131,7 +132,7 @@ function normalizeTours(rows) {
       features: parseList(required(row.features, "features", rowNumber, "tours")),
       included: parseList(row.included),
       note: optional(row.note) || undefined,
-      colorClass: required(row.colorClass, "colorClass", rowNumber, "tours"),
+      colorClass: optional(row.colorClass) || "bg-[linear-gradient(160deg,#24364f,#1b7f82_55%,#ef6b43)]",
       image: imageFile
         ? { src: `tours/${imageFile.replace(/^\/+/, "")}`, alt: optional(row.imageAlt) || required(row.title, "title", rowNumber, "tours") }
         : undefined,

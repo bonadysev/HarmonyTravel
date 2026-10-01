@@ -31,5 +31,16 @@
     "format": "1 день",
     "status": "Идет набор",
     "statusTone": "teal"
+  },
+  {
+    "id": "kv-2026-10-01",
+    "linkedTourId": "kvantum",
+    "date": "3 и 8 ноября",
+    "title": "Детский тур в музей наук «КВАНТУМ» и Национальную библиотеку РБ",
+    "location": "г. Минск",
+    "price": "113руб.",
+    "format": "1 день",
+    "status": "Идет набор",
+    "statusTone": "amber"
   }
 ]
