@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="section-shell flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <BrandSignature />
 
-        <div className="grid gap-1.5 text-sm leading-6 text-[color:var(--ink-soft)] sm:text-right">
+        <div className="grid gap-0.5 text-sm leading-5 text-[color:var(--ink-soft)] sm:text-right">
           <p className="font-bold text-[color:var(--foreground)]">{brand.legalName}</p>
           <a href={`tel:${brand.phone}`}>{brand.phone}</a>
           <a href={`mailto:${brand.email}`}>{brand.email}</a>
