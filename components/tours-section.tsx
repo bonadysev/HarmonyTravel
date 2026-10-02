@@ -13,11 +13,13 @@ export function ToursSection() {
   }
 
   const filteredTours = useMemo(() => {
+    const activeTours = tours.filter((tour) => tour.active);
+
     if (category === "Все") {
-      return tours;
+      return activeTours;
     }
 
-    return tours.filter((tour) => tour.category === category);
+    return activeTours.filter((tour) => tour.category === category);
   }, [category]);
 
   return (

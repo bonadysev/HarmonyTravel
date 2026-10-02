@@ -214,7 +214,7 @@
       "src": "tours/transport-museum-ratomka-horse-club.jpeg",
       "alt": "Детский тур в \"Музей Транспорта\" и конный клуб \"Ратомка\""
     },
-    "active": true
+    "active": false
   },
   {
     "id": "kvantum",
