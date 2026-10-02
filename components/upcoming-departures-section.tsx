@@ -1,8 +1,8 @@
 import { upcomingDepartures, type DepartureTone } from "@/data";
 
 const toneClasses = {
-  teal: "bg-emerald-100 text-emerald-800",
-  amber: "bg-amber-100 text-amber-800",
+  teal: "border border-emerald-200 bg-emerald-100 text-emerald-800",
+  amber: "border border-amber-200 bg-amber-100 text-amber-800",
 } as const;
 
 export function UpcomingDeparturesSection() {
@@ -11,11 +11,16 @@ export function UpcomingDeparturesSection() {
   }
 
   return (
-    <section id="departures" className="py-16 sm:py-20">
+    <section
+      id="departures"
+      className="border-y border-[color:var(--accent)]/15 bg-[linear-gradient(180deg,#effaf8_0%,#fffef8_100%)] py-16 sm:py-20"
+    >
       <div className="section-shell">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-5">
-            <span className="eyebrow">Ближайшие выезды</span>
+            <span className="eyebrow border border-[color:var(--accent)]/20 bg-white/80 px-3 py-1.5 shadow-sm">
+              Ближайшие выезды
+            </span>
             <h2 className="section-title">Самые близкие даты, на которые уже можно оставить заявку</h2>
           </div>
           <a
@@ -28,10 +33,13 @@ export function UpcomingDeparturesSection() {
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {upcomingDepartures.map((departure) => (
-            <article key={`${departure.date}-${departure.title}`} className="glass-card rounded-[28px] border p-5 sm:p-6">
+            <article
+              key={`${departure.date}-${departure.title}`}
+              className="glass-card rounded-[28px] border border-[color:var(--accent)]/18 bg-white/90 p-5 shadow-[0_18px_45px_rgba(19,134,125,0.10)] transition duration-200 hover:-translate-y-1 hover:border-[color:var(--accent)]/40 hover:shadow-[0_22px_52px_rgba(19,134,125,0.16)] sm:p-6"
+            >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)]">
+                  <p className="inline-flex rounded-full bg-[color:var(--accent-soft)] px-3 py-1 text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)]">
                     {departure.date}
                   </p>
                   <h3 className="mt-3 text-2xl font-black leading-tight">{departure.title}</h3>
