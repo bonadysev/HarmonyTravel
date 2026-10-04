@@ -58,7 +58,10 @@ export function TrustFaqSection() {
                   const isOpen = openItem === index;
 
                   return (
-                    <article key={item.id} className="rounded-[24px] border bg-white/82">
+                    <article
+                      key={item.id}
+                      className="rounded-[24px] border bg-white/82 transition-transform duration-200 ease-out hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                    >
                       <button
                         type="button"
                         onClick={() => setOpenItem(isOpen ? -1 : index)}
@@ -66,17 +69,27 @@ export function TrustFaqSection() {
                         aria-expanded={isOpen}
                       >
                         <span className="text-base font-black sm:text-lg">{item.question}</span>
-                        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--brand)] text-lg font-black text-white">
+                        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--brand)] text-lg font-black text-white transition-transform duration-200 ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100">
                           {isOpen ? "-" : "+"}
                         </span>
                       </button>
-                      {isOpen ? (
-                        <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                      <div
+                        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="min-h-0 overflow-hidden">
+                          <div
+                            className={`px-5 pb-5 transition-opacity duration-200 sm:px-6 sm:pb-6 motion-reduce:transition-none ${
+                              isOpen ? "opacity-100" : "opacity-0"
+                            }`}
+                          >
                           <p className="max-w-3xl text-sm leading-7 text-[color:var(--ink-soft)] sm:text-base">
                             {item.answer}
                           </p>
+                          </div>
                         </div>
-                      ) : null}
+                      </div>
                     </article>
                   );
                 })}

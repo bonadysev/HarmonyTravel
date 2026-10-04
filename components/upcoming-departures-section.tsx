@@ -35,11 +35,11 @@ export function UpcomingDeparturesSection() {
           {upcomingDepartures.map((departure) => (
             <article
               key={`${departure.date}-${departure.title}`}
-              className="glass-card rounded-[28px] border border-[color:var(--accent)]/18 bg-white/90 p-5 shadow-[0_18px_45px_rgba(19,134,125,0.10)] transition duration-200 hover:-translate-y-1 hover:border-[color:var(--accent)]/40 hover:shadow-[0_22px_52px_rgba(19,134,125,0.16)] sm:p-6"
+              className="group glass-card rounded-[28px] border border-[color:var(--accent)]/18 bg-white/90 p-5 shadow-[0_18px_45px_rgba(19,134,125,0.10)] transition-transform duration-200 ease-out hover:-translate-y-1 focus-within:-translate-y-1 hover:border-[color:var(--accent)]/40 hover:shadow-[0_22px_52px_rgba(19,134,125,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0 sm:p-6"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="inline-flex rounded-full bg-[color:var(--accent-soft)] px-3 py-1 text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)]">
+                  <p className="inline-flex rounded-full bg-[color:var(--accent-soft)] px-3 py-1 text-sm font-black uppercase tracking-[0.14em] text-[color:var(--accent)] transition-transform duration-200 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
                     {departure.date}
                   </p>
                   <h3 className="mt-3 text-2xl font-black leading-tight">{departure.title}</h3>

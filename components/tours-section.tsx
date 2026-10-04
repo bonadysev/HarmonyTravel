@@ -55,7 +55,10 @@ export function ToursSection() {
 
         <div className="mt-10 grid gap-4 xl:grid-cols-2">
           {filteredTours.map((tour) => (
-            <article key={tour.title} className="glass-card grid overflow-hidden rounded-[30px] border lg:grid-cols-[1.1fr_0.9fr]">
+            <article
+              key={tour.title}
+              className="group glass-card grid overflow-hidden rounded-[30px] border transition-transform duration-200 ease-out hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:grid-cols-[1.1fr_0.9fr]"
+            >
               <div className={`${tour.colorClass} text-white`}>
                 {tour.image ? (
                   <div className="relative aspect-[16/10] overflow-hidden">
@@ -63,10 +66,10 @@ export function ToursSection() {
                       src={tour.image.src}
                       alt={tour.image.alt}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       sizes="(max-width: 1279px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,26,0.06),rgba(12,15,26,0.58))]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,26,0.06),rgba(12,15,26,0.58))] opacity-90 transition-opacity duration-300 ease-out group-hover:opacity-75 motion-reduce:transition-none" />
                   </div>
                 ) : null}
 
