@@ -58,7 +58,7 @@ export function HeroSection() {
                     alt={`Логотип ${brand.displayName}`}
                     width={420}
                     height={420}
-                    className="w-full max-w-[220px] rounded-[28px] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:max-w-[260px] lg:max-w-[300px]"
+                    className="logo-fade-in w-full max-w-[220px] rounded-[28px] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:max-w-[260px] lg:max-w-[300px]"
                     priority
                   />
                 </div>

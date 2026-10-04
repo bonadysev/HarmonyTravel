@@ -18,7 +18,7 @@ export function SiteHeader() {
               src={brand.logoPath}
               alt={`Логотип ${brand.displayName}`}
               fill
-              className="object-contain"
+              className="logo-fade-in object-contain"
               sizes="44px"
             />
           </div>
