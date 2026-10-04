@@ -13,12 +13,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/50 bg-white/70 backdrop-blur-xl">
       <div className="section-shell flex min-h-[4.5rem] items-center justify-between gap-4">
         <a href="#top" className="flex min-w-0 items-center gap-3">
-          <div className="relative h-11 w-11 overflow-hidden rounded-2xl border border-white/60 bg-[#261a53] shadow-sm">
+          <div className="relative aspect-square h-11 w-11 min-h-11 min-w-11 shrink-0 overflow-hidden rounded-2xl border border-white/60 bg-[#261a53] shadow-sm">
             <Image
               src={brand.logoPath}
               alt={`Логотип ${brand.displayName}`}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="44px"
             />
           </div>

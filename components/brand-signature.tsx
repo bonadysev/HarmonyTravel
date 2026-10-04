@@ -4,12 +4,12 @@ import { brand } from "@/data";
 export function BrandSignature() {
   return (
     <div className="flex items-start gap-4">
-      <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-white/60 bg-[#261a53] shadow-sm">
+      <div className="relative aspect-square h-14 w-14 min-h-14 min-w-14 shrink-0 overflow-hidden rounded-2xl border border-white/60 bg-[#261a53] shadow-sm">
         <Image
           src={brand.logoPath}
           alt={`Логотип ${brand.displayName}`}
           fill
-          className="object-cover"
+          className="object-contain"
           sizes="56px"
         />
       </div>
