@@ -27,7 +27,7 @@ export function MobileStickyContactBar() {
         </a>
         <a
           href="#lead-form"
-          className="inline-flex min-h-14 flex-col items-center justify-center gap-1 rounded-[22px] bg-[linear-gradient(135deg,var(--brand),var(--brand-deep))] px-2 text-center text-[11px] font-black text-white shadow-[0_14px_30px_rgba(244,106,64,0.28)] transition hover:brightness-105"
+          className="inline-flex min-h-14 flex-col items-center justify-center gap-1 rounded-[22px] bg-[linear-gradient(135deg,var(--brand),var(--brand-deep))] px-2 text-center text-[11px] font-black text-white shadow-[0_12px_26px_rgba(244,106,64,0.25),0_0_16px_rgba(244,106,64,0.16)] transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(244,106,64,0.32),0_0_22px_rgba(244,106,64,0.24)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--brand)]/25 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           aria-label="Перейти к форме заявки"
         >
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
