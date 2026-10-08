@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Harmony Travel Kids Tours | Детские туры с заботой и сопровождением",
   description:
     "Детские туры для школьников и подростков: безопасные маршруты, опытные сопровождающие и программы по возрастам.",
+  icons: {
+    icon: [{ url: "/harmony-travel-logo.jpg", type: "image/jpeg" }],
+    apple: [{ url: "/harmony-travel-logo.jpg", type: "image/jpeg" }],
+  },
   openGraph: {
     title: "Harmony Travel Kids Tours",
     description:
