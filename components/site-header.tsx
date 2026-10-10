@@ -5,6 +5,7 @@ import { useState } from "react";
 import { brand, navigationItems } from "@/data";
 
 const telegramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/telegram_logo.jpg" : "/telegram_logo.jpg";
+const instagramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/instagram-logo.jpg" : "/instagram-logo.jpg";
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +51,21 @@ export function SiteHeader() {
           >
             <Image
               src={telegramLogoPath}
+              alt=""
+              fill
+              className="scale-[1.34] object-cover"
+              sizes="48px"
+            />
+          </a>
+          <a
+            href={brand.instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="relative inline-flex h-12 w-12 shrink-0 overflow-hidden rounded-full border bg-white transition hover:border-[color:var(--accent)]"
+            aria-label={`Открыть Instagram ${brand.instagramHandle}`}
+          >
+            <Image
+              src={instagramLogoPath}
               alt=""
               fill
               className="scale-[1.34] object-cover"
