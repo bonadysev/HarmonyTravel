@@ -2,11 +2,12 @@ import Image from "next/image";
 import { brand } from "@/data";
 
 const telegramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/telegram_logo.jpg" : "/telegram_logo.jpg";
+const instagramLogoPath = process.env.NODE_ENV === "production" ? "/HarmonyTravel/instagram-logo.jpg" : "/instagram-logo.jpg";
 
 export function MobileStickyContactBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-black/5 bg-white/92 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-14px_36px_rgba(23,32,51,0.14)] backdrop-blur md:hidden">
-      <div className="mx-auto grid max-w-5xl grid-cols-3 gap-2 rounded-[26px] bg-white/88 p-2 shadow-[0_10px_30px_rgba(23,32,51,0.08)]">
+      <div className="mx-auto grid max-w-5xl grid-cols-4 gap-2 rounded-[26px] bg-white/88 p-2 shadow-[0_10px_30px_rgba(23,32,51,0.08)]">
         <a
           href={brand.telegramUrl}
           target="_blank"
@@ -24,6 +25,24 @@ export function MobileStickyContactBar() {
             />
           </span>
           Telegram
+        </a>
+        <a
+          href={brand.instagramUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-14 flex-col items-center justify-center gap-1 rounded-[22px] border border-[color:var(--accent)]/12 bg-[color:var(--accent-soft)]/28 px-1 text-center text-[10px] font-bold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+          aria-label={`Открыть Instagram ${brand.instagramHandle}`}
+        >
+          <span className="relative inline-flex h-8 w-8 shrink-0 overflow-hidden rounded-full bg-white shadow-sm">
+            <Image
+              src={instagramLogoPath}
+              alt=""
+              fill
+              className="scale-[1.34] object-cover"
+              sizes="32px"
+            />
+          </span>
+          Instagram
         </a>
         <a
           href="#lead-form"
