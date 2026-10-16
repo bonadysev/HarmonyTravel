@@ -38,9 +38,11 @@ export type Benefit = {
 };
 
 export type TourCategory = "Языковые" | "Активные" | "Морские" | "Экскурсионные";
+export type PublishStatus = "draft" | "published" | "archived";
 
 export type Tour = {
   id: string;
+  publishStatus: PublishStatus;
   category: TourCategory;
   title: string;
   location: string;

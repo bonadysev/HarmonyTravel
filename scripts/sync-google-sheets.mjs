@@ -7,7 +7,7 @@ const spreadsheetId = process.env.GOOGLE_SHEETS_ID || defaultSpreadsheetId;
 const outputDirectory = path.resolve("data/generated");
 
 const schemas = {
-  tours: ["id", "active", "category", "title", "location", "date", "age", "duration", "price", "description", "features", "included", "note", "colorClass", "imageFile", "imageAlt"],
+  tours: ["id", "active", "publishStatus", "category", "title", "location", "date", "age", "duration", "price", "description", "features", "included", "note", "colorClass", "imageFile", "imageAlt"],
   departures: ["id", "linkedTourId", "date", "title", "location", "price", "format", "status", "statusTone"],
   reviews: ["id", "author", "city", "parentContext", "childAge", "tour", "quote", "accentTone"],
   faqs: ["id", "question", "answer"],
@@ -76,6 +76,14 @@ function parseBoolean(value, field, rowNumber, sheetName) {
   throw new Error(`${sheetName}: строка ${rowNumber}, поле ${field} должно быть true/false`);
 }
 
+function parsePublishStatus(value, rowNumber, sheetName) {
+  const normalized = required(value, "publishStatus", rowNumber, sheetName).toLowerCase();
+  if (!["draft", "published", "archived"].includes(normalized)) {
+    throw new Error(`${sheetName}: строка ${rowNumber}, publishStatus должен быть draft, published или archived`);
+  }
+  return normalized;
+}
+
 function parseList(value) {
   return optional(value)
     .split("|")
@@ -114,13 +122,20 @@ async function readSheet(sheetName) {
 function normalizeTours(rows) {
   assertUnique(rows, "id", "tours");
   const categories = new Set(["Языковые", "Активные", "Морские", "Экскурсионные"]);
-  return rows.map((row, index) => {
+  return rows.flatMap((row, index) => {
     const rowNumber = index + 2;
+    const publishStatus = parsePublishStatus(row.publishStatus, rowNumber, "tours");
+
+    if (publishStatus !== "published") {
+      return [];
+    }
+
     const category = required(row.category, "category", rowNumber, "tours");
     if (!categories.has(category)) throw new Error(`tours: строка ${rowNumber}, неизвестная категория ${category}`);
     const imageFile = optional(row.imageFile);
     return {
       id: required(row.id, "id", rowNumber, "tours"),
+      publishStatus,
       category,
       title: required(row.title, "title", rowNumber, "tours"),
       location: required(row.location, "location", rowNumber, "tours"),
