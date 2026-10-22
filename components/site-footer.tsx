@@ -19,6 +19,7 @@ export function SiteFooter() {
           <p>{brand.legalAddress}</p>
           <p>График работы: {brand.schedule}</p>
           <p>УНП: {brand.unp}</p>
+          <p>© 2025 {brand.legalName}</p>
           <Link href="/privacy-policy" target="_blank" rel="noreferrer">
             Политика обработки персональных данных
           </Link>
