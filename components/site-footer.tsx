@@ -10,12 +10,6 @@ export function SiteFooter() {
 
         <div className="grid gap-0.5 text-sm leading-5 text-[color:var(--ink-soft)] sm:text-right">
           <p className="font-bold text-[color:var(--foreground)]">{brand.legalName}</p>
-          <a href={`tel:${brand.phone}`}>{brand.phone}</a>
-          <a href={`mailto:${brand.email}`}>{brand.email}</a>
-          <a href={brand.telegramUrl}>{brand.telegramChannel}</a>
-          <a href={brand.instagramUrl} target="_blank" rel="noreferrer">
-            Instagram: {brand.instagramHandle}
-          </a>
           <p>{brand.legalAddress}</p>
           <p>График работы: {brand.schedule}</p>
           <p>УНП: {brand.unp}</p>
