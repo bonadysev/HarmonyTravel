@@ -1,46 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useSyncExternalStore } from "react";
-
-const COOKIE_CONSENT_KEY = "harmony_cookie_consent";
-const COOKIE_CONSENT_EVENT = "harmony-cookie-consent-change";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import {
+  COOKIE_CONSENT_EVENT,
+  COOKIE_SETTINGS_EVENT,
+  hasAnalyticsConsent,
+  saveConsent,
+  shouldShowCookieConsent,
+} from "@/lib/cookie-consent";
 
 type ConsentMode = "notice" | "settings";
-
-type CookieConsentValue = {
-  necessary: true;
-  analytics: boolean;
-  updatedAt: string;
-};
-
-function saveConsent(analytics: boolean) {
-  const value: CookieConsentValue = {
-    necessary: true,
-    analytics,
-    updatedAt: new Date().toISOString(),
-  };
-
-  window.localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(value));
-  window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
-}
-
-function isPolicyPage() {
-  return ["/cookie-policy", "/privacy-policy"].some((path) => window.location.pathname.includes(path));
-}
 
 function subscribeToConsent(callback: () => void) {
   window.addEventListener("storage", callback);
   window.addEventListener(COOKIE_CONSENT_EVENT, callback);
+  window.addEventListener(COOKIE_SETTINGS_EVENT, callback);
 
   return () => {
     window.removeEventListener("storage", callback);
     window.removeEventListener(COOKIE_CONSENT_EVENT, callback);
+    window.removeEventListener(COOKIE_SETTINGS_EVENT, callback);
   };
 }
 
 function getConsentSnapshot() {
-  return !isPolicyPage() && window.localStorage.getItem(COOKIE_CONSENT_KEY) === null;
+  return shouldShowCookieConsent();
 }
 
 function getConsentServerSnapshot() {
@@ -55,6 +40,16 @@ export function CookieConsent() {
   );
   const [mode, setMode] = useState<ConsentMode>("notice");
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+
+  useEffect(() => {
+    function openSettings() {
+      setAnalyticsEnabled(hasAnalyticsConsent());
+      setMode("settings");
+    }
+
+    window.addEventListener(COOKIE_SETTINGS_EVENT, openSettings);
+    return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, openSettings);
+  }, []);
 
   if (!isVisible) {
     return null;

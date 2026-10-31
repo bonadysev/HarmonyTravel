@@ -1,75 +1,126 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Script from "next/script";
+import { useEffect } from "react";
+import { COOKIE_CONSENT_EVENT, hasAnalyticsConsent } from "@/lib/cookie-consent";
 
 const YANDEX_METRIKA_ID = 109544158;
-const COOKIE_CONSENT_KEY = "harmony_cookie_consent";
-const COOKIE_CONSENT_EVENT = "harmony-cookie-consent-change";
 
-type CookieConsentState = {
-  analytics?: boolean;
+type YandexMetrikaFunction = ((...args: unknown[]) => void) & {
+  a?: unknown[][];
+  l?: number;
 };
 
-function hasAnalyticsConsent() {
-  try {
-    const saved = window.localStorage.getItem(COOKIE_CONSENT_KEY);
-
-    if (!saved) {
-      return false;
-    }
-
-    const parsed = JSON.parse(saved) as CookieConsentState;
-
-    return parsed.analytics === true;
-  } catch {
-    return false;
+declare global {
+  interface Window {
+    ym?: YandexMetrikaFunction;
   }
 }
 
+let counterActive = false;
+
+function loadAndStartCounter() {
+  if (counterActive) return;
+
+  const settings = {
+    ssr: true,
+    webvisor: true,
+    clickmap: true,
+    ecommerce: "dataLayer",
+    referrer: document.referrer,
+    url: location.href,
+    accurateTrackBounce: true,
+    trackLinks: true,
+  };
+
+  if (!window.ym) {
+    const ym = ((...args: unknown[]) => {
+      (ym.a ||= []).push(args);
+    }) as YandexMetrikaFunction;
+    ym.l = Date.now();
+    window.ym = ym;
+  }
+
+  window.ym(YANDEX_METRIKA_ID, "init", settings);
+
+  if (!document.querySelector("script[data-harmony-metrika]")) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.dataset.harmonyMetrika = "true";
+    script.src = `https://mc.yandex.ru/metrika/tag.js?id=${YANDEX_METRIKA_ID}`;
+    document.head.appendChild(script);
+  }
+
+  counterActive = true;
+}
+
+function clearAccessibleMetrikaData() {
+  const cookieNames = document.cookie
+    .split(";")
+    .map((cookie) => cookie.split("=")[0]?.trim())
+    .filter((name): name is string => Boolean(name) && /^_ym(?:_|$)/.test(name));
+  const cookiePaths = new Set(["/"]);
+  const currentDirectory = location.pathname.slice(0, location.pathname.lastIndexOf("/") + 1);
+  if (currentDirectory) cookiePaths.add(currentDirectory);
+  const hostParts = location.hostname.split(".");
+  const cookieDomains = hostParts.flatMap((_, index) => {
+    const domain = hostParts.slice(index).join(".");
+    return [`; domain=${domain}`, `; domain=.${domain}`];
+  });
+
+  cookieNames.forEach((name) => {
+    cookiePaths.forEach((path) => {
+      document.cookie = `${name}=; Max-Age=0; path=${path}; SameSite=Lax`;
+      cookieDomains.forEach((domain) => {
+        document.cookie = `${name}=; Max-Age=0; path=${path}${domain}; SameSite=Lax`;
+      });
+    });
+  });
+
+  Object.keys(localStorage).forEach((key) => {
+    if (
+      key.startsWith(`_ym${YANDEX_METRIKA_ID}_`) ||
+      key === "_ym_uid" ||
+      key === "_ym_hide_phones" ||
+      key === "_ym_retryReqs" ||
+      key.startsWith(`ytm_tf_${YANDEX_METRIKA_ID}_`) ||
+      key.startsWith(`ytm_tag_${YANDEX_METRIKA_ID}_`)
+    ) {
+      localStorage.removeItem(key);
+    }
+  });
+
+  sessionStorage.removeItem("_ym_debugger_state");
+  sessionStorage.removeItem("_ym_turbo_uid");
+}
+
+function stopCounter() {
+  if (counterActive) {
+    window.ym?.(YANDEX_METRIKA_ID, "destruct");
+    counterActive = false;
+  }
+
+  clearAccessibleMetrikaData();
+}
+
 export function YandexMetrika() {
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-
   useEffect(() => {
-    const updateConsent = () => setAnalyticsAllowed(hasAnalyticsConsent());
+    const syncCounterWithConsent = () => {
+      if (hasAnalyticsConsent()) {
+        loadAndStartCounter();
+      } else {
+        stopCounter();
+      }
+    };
 
-    updateConsent();
-    window.addEventListener(COOKIE_CONSENT_EVENT, updateConsent);
-    window.addEventListener("storage", updateConsent);
+    syncCounterWithConsent();
+    window.addEventListener(COOKIE_CONSENT_EVENT, syncCounterWithConsent);
+    window.addEventListener("storage", syncCounterWithConsent);
 
     return () => {
-      window.removeEventListener(COOKIE_CONSENT_EVENT, updateConsent);
-      window.removeEventListener("storage", updateConsent);
+      window.removeEventListener(COOKIE_CONSENT_EVENT, syncCounterWithConsent);
+      window.removeEventListener("storage", syncCounterWithConsent);
     };
   }, []);
 
-  if (!analyticsAllowed) {
-    return null;
-  }
-
-  return (
-    <Script id="yandex-metrika-counter" strategy="afterInteractive">
-      {`
-        (function(m,e,t,r,i,k,a){
-          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-          m[i].l=1*new Date();
-          for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) { return; }
-          }
-          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=${YANDEX_METRIKA_ID}', 'ym');
-
-        ym(${YANDEX_METRIKA_ID}, 'init', {
-          ssr: true,
-          webvisor: true,
-          clickmap: true,
-          ecommerce: "dataLayer",
-          referrer: document.referrer,
-          url: location.href,
-          accurateTrackBounce: true,
-          trackLinks: true
-        });
-      `}
-    </Script>
-  );
+  return null;
 }

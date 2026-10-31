@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { brand } from "@/data";
 import { BrandSignature } from "@/components/brand-signature";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 export function SiteFooter() {
   return (
@@ -19,6 +20,7 @@ export function SiteFooter() {
           <Link href="/cookie-policy" target="_blank" rel="noreferrer">
             Политика в отношении обработки файлов cookie
           </Link>
+          <CookieSettingsButton />
           <p>© 2025 {brand.legalName}</p>
         </div>
       </div>
