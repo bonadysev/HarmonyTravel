@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const COOKIE_CONSENT_KEY = "harmony_cookie_consent";
 const COOKIE_CONSENT_EVENT = "harmony-cookie-consent-change";
@@ -29,14 +29,32 @@ function isPolicyPage() {
   return ["/cookie-policy", "/privacy-policy"].some((path) => window.location.pathname.includes(path));
 }
 
+function subscribeToConsent(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(COOKIE_CONSENT_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(COOKIE_CONSENT_EVENT, callback);
+  };
+}
+
+function getConsentSnapshot() {
+  return !isPolicyPage() && window.localStorage.getItem(COOKIE_CONSENT_KEY) === null;
+}
+
+function getConsentServerSnapshot() {
+  return false;
+}
+
 export function CookieConsent() {
-  const [isVisible, setIsVisible] = useState(false);
+  const isVisible = useSyncExternalStore(
+    subscribeToConsent,
+    getConsentSnapshot,
+    getConsentServerSnapshot,
+  );
   const [mode, setMode] = useState<ConsentMode>("notice");
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
-
-  useEffect(() => {
-    setIsVisible(!isPolicyPage() && window.localStorage.getItem(COOKIE_CONSENT_KEY) === null);
-  }, []);
 
   if (!isVisible) {
     return null;
@@ -44,17 +62,14 @@ export function CookieConsent() {
 
   const acceptAll = () => {
     saveConsent(true);
-    setIsVisible(false);
   };
 
   const rejectOptional = () => {
     saveConsent(false);
-    setIsVisible(false);
   };
 
   const saveSettings = () => {
     saveConsent(analyticsEnabled);
-    setIsVisible(false);
   };
 
   return (
