@@ -157,9 +157,22 @@ function normalizeTours(rows) {
 }
 
 function normalizeDepartures(rows, tours) {
-  assertUnique(rows, "id", "departures");
+  const requiredFields = ["id", "linkedTourId", "date", "title", "location", "price", "format", "status", "statusTone"];
+  const completeRows = rows.filter((row, index) => {
+    const missingFields = requiredFields.filter((field) => !optional(row[field]));
+    if (missingFields.length === 0) return true;
+
+    const rowNumber = index + 2;
+    const rowId = optional(row.id) || "без id";
+    console.warn(
+      `Предупреждение: departures строка ${rowNumber} (${rowId}) пропущена, не заполнены: ${missingFields.join(", ")}`,
+    );
+    return false;
+  });
+
+  assertUnique(completeRows, "id", "departures");
   const tourIds = new Set(tours.map((tour) => tour.id));
-  return rows.map((row, index) => {
+  return completeRows.map((row, index) => {
     const rowNumber = index + 2;
     const linkedTourId = required(row.linkedTourId, "linkedTourId", rowNumber, "departures");
     if (!tourIds.has(linkedTourId)) throw new Error(`departures: строка ${rowNumber}, тур ${linkedTourId} не найден`);
@@ -230,15 +243,16 @@ async function main() {
     readSheet("company"),
   ]);
   const tours = normalizeTours(tourRows);
+  const departures = normalizeDepartures(departureRows, tours);
   await mkdir(outputDirectory, { recursive: true });
   await Promise.all([
     writeJson("tours.json", tours),
-    writeJson("departures.json", normalizeDepartures(departureRows, tours)),
+    writeJson("departures.json", departures),
     writeJson("reviews.json", normalizeReviews(reviewRows)),
     writeJson("faqs.json", normalizeFaqs(faqRows)),
     writeJson("company.json", normalizeCompany(companyRows)),
   ]);
-  console.log(`Google Sheets ${spreadsheetId} синхронизирован: ${tours.length} туров, ${departureRows.length} выездов, ${reviewRows.length} отзывов, ${faqRows.length} FAQ`);
+  console.log(`Google Sheets ${spreadsheetId} синхронизирован: ${tours.length} туров, ${departures.length} выездов, ${reviewRows.length} отзывов, ${faqRows.length} FAQ`);
 }
 
 main().catch((error) => {

@@ -1,24 +1,24 @@
 [
   {
-    "id": "kv-2026-10-01",
-    "linkedTourId": "kvantum",
-    "date": "3 и 8 ноября",
-    "title": "Детский тур в музей наук «КВАНТУМ» и Национальную библиотеку РБ",
-    "location": "г. Минск",
-    "price": "113руб.",
-    "format": "1 день",
-    "status": "Идет набор",
-    "statusTone": "amber"
-  },
-  {
     "id": "dipriz",
     "linkedTourId": "dipriz-nature-park",
-    "date": "24 октября и 4 ноября",
+    "date": "4 ноября",
     "title": "Детский тур в Парк Природы \"Диприз\"",
-    "location": "Барановичский р-н, д. Глинище",
+    "location": "Брестская область",
     "price": "126руб.",
     "format": "1 день",
     "status": "Идет набор",
     "statusTone": "teal"
+  },
+  {
+    "id": "dydytki-departures",
+    "linkedTourId": "dydytki",
+    "date": "7 ноября",
+    "title": "Детский тур в музей народных ремёсел \"Дудутки\"",
+    "location": "Минская область",
+    "price": "110руб.",
+    "format": "1 день",
+    "status": "Идет набор",
+    "statusTone": "amber"
   }
 ]
