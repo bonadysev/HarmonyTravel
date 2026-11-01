@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { brand } from "@/data";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 export const metadata: Metadata = {
   title: "Политика в отношении обработки файлов cookie | Harmony Travel",
@@ -151,11 +152,12 @@ export default function CookiePolicyPage() {
                 идентификаторы из cookie, localStorage и sessionStorage.
               </p>
               <p>
-                Изменить или отозвать согласие можно в любое время через пункт “Настройки cookie” внизу
-                сайта. Удаление данных, уже переданных Яндексу до отзыва согласия, этим действием не
+                Изменить или отозвать согласие можно в любое время с помощью кнопки ниже. Удаление данных,
+                уже переданных Яндексу до отзыва согласия, этим действием не
                 выполняется. Cookie, установленные на доменах Яндекса или других третьих лиц, сайт не
                 может удалить из-за ограничений браузера; ими можно управлять в настройках браузера.
               </p>
+              <CookieSettingsButton />
             </section>
 
             <section className="space-y-3">
